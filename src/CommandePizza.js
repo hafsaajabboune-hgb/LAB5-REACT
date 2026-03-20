@@ -1,23 +1,22 @@
-import { useRef } from 'react'; // FR: Hook pour références | DE: Hook für Referenzen | AR: خطاف للمراجع
+import { useRef } from 'react'; // Hook for DOM references / Hook pour les références DOM
 
 function CommandePizza() {
-  // ES: Referencias a elementos del DOM | EN: DOM element references | FR: Références aux éléments
+  // Create refs for uncontrolled inputs / Crée des refs pour les inputs non-contrôlés
   const tailleRef = useRef();
   const garnitureRef = useRef();
   const quantiteRef = useRef();
 
-  // DE: Bestellung absenden | AR: تقديم الطلب | EN: Submit order
+  // Handle order submission / Gère la soumission de la commande
   const handlePasserCommande = (e) => {
-    e.preventDefault(); // FR: Empêcher comportement par défaut | ES: Evitar comportamiento por defecto
+    e.preventDefault(); // Prevent default form behavior / Empêche le comportement par défaut
     
-    // FR: Récupération des valeurs directement depuis les références | EN: Get values directly from refs
+    // Get values directly from refs / Récupère les valeurs directement depuis les refs
     const commande = {
       taille: tailleRef.current.value,
       garniture: garnitureRef.current.value,
       quantite: quantiteRef.current.value
     };
     
-    // AR: عرض تفاصيل الطلب | DE: Bestelldetails anzeigen | ES: Mostrar detalles del pedido
     alert(`Commande recue : ${commande.quantite} pizza(s) ${commande.taille} avec ${commande.garniture}`);
   };
 
@@ -25,21 +24,21 @@ function CommandePizza() {
     <form onSubmit={handlePasserCommande} style={stylesPizza.formulaire}>
       <h3>Commander une pizza</h3>
       
-      {/* FR: Liste déroulante non-contrôlée | EN: Uncontrolled dropdown | DE: Unkontrollierte Dropdown-Liste */}
+      {/* Uncontrolled dropdown for size / Liste déroulante non-contrôlée pour la taille */}
       <select ref={tailleRef} style={stylesPizza.champ}>
         <option value="petite">Petite</option>
         <option value="moyenne">Moyenne</option>
         <option value="grande">Grande</option>
       </select>
       
-      {/* ES: Lista desplegable no controlada | AR: قائمة منسدلة غير متحكم بها */}
+      {/* Uncontrolled dropdown for topping / Liste déroulante non-contrôlée pour la garniture */}
       <select ref={garnitureRef} style={stylesPizza.champ}>
         <option value="margherita">Margherita</option>
         <option value="reine">Reine</option>
         <option value="vegetarienne">Vegetarienne</option>
       </select>
       
-      {/* DE: Unkontrolliertes Zahlenfeld | EN: Uncontrolled number input | FR: Champ numérique non-contrôlé */}
+      {/* Uncontrolled number input / Champ numérique non-contrôlé */}
       <input
         type="number"
         ref={quantiteRef}
@@ -53,7 +52,7 @@ function CommandePizza() {
   );
 }
 
-// FR: Styles spécifiques à la pizza | EN: Pizza-specific styles | ES: Estilos específicos para pizza
+// Pizza-specific styles / Styles spécifiques à la pizza
 const stylesPizza = {
   formulaire: { padding: '20px', border: '2px solid #FF5722', borderRadius: '10px', marginTop: '20px' },
   champ: { display: 'block', margin: '10px 0', padding: '8px', width: '200px' },
