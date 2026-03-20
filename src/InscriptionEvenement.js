@@ -1,33 +1,32 @@
-import { useState } from 'react'; // FR: Import du hook pour gérer l'état | EN: Import hook for state management | ES: Importar hook para manejar estado
+import { useState } from 'react'; // Hook for state management / Hook pour gérer l'état
 
 function InscriptionEvenement() {
-  // DE: Zustand für Teilnehmerdaten | AR: حالة بيانات المشارك | FR: État du participant
+  // State for participant data / État pour les données du participant
   const [participant, setParticipant] = useState({
     prenom: '',
     courriel: '',
     age: ''
   });
 
-  // ES: Manejar cambios en el formulario | EN: Handle form changes | FR: Gérer les changements
+  // Handle form input changes / Gère les changements dans le formulaire
   const handleChangement = (e) => {
-    const { name, value } = e.target; // DE: Werte aus Eingabefeld extrahieren | AR: استخراج القيم من حقل الإدخال
+    const { name, value } = e.target; // Get name and value from input / Récupère le nom et la valeur
     setParticipant(prev => ({
-      ...prev,
-      [name]: value // FR: Mise à jour dynamique | EN: Dynamic update | ES: Actualización dinámica
+      ...prev, // Keep other fields / Garde les autres champs
+      [name]: value // Update changed field / Met à jour le champ modifié
     }));
   };
 
-  // AR: معالجة تقديم النموذج | DE: Formularabsendung verarbeiten | EN: Handle form submission
+  // Handle form submission / Gère la soumission du formulaire
   const handleSoumission = (e) => {
-    e.preventDefault(); // FR: Empêcher le rechargement | ES: Evitar recarga | DE: Neuladen verhindern
+    e.preventDefault(); // Prevent page reload / Empêche le rechargement
     alert(`Nouveau participant : ${participant.prenom} (${participant.courriel}), ${participant.age} ans`);
-    // AR: تنبيه بالمشارك الجديد | EN: Alert with new participant | ES: Alerta con nuevo participante
   };
 
   return (
     <form onSubmit={handleSoumission} style={styles.formulaire}>
       <h3>Inscription a la conference</h3>
-      {/* FR: Champ prénom contrôlé | EN: Controlled first name field | DE: Kontrolliertes Vornamenfeld */}
+      {/* Controlled input for first name / Champ contrôlé pour le prénom */}
       <input
         type="text"
         name="prenom"
@@ -36,7 +35,7 @@ function InscriptionEvenement() {
         placeholder="Prenom"
         style={styles.champ}
       />
-      {/* ES: Campo de correo controlado | AR: حقل البريد الإلكتروني المتحكم به */}
+      {/* Controlled input for email / Champ contrôlé pour l'email */}
       <input
         type="email"
         name="courriel"
@@ -45,7 +44,7 @@ function InscriptionEvenement() {
         placeholder="Email"
         style={styles.champ}
       />
-      {/* DE: Kontrolliertes Altersfeld | EN: Controlled age field | FR: Champ âge contrôlé */}
+      {/* Controlled input for age / Champ contrôlé pour l'âge */}
       <input
         type="number"
         name="age"
@@ -59,7 +58,7 @@ function InscriptionEvenement() {
   );
 }
 
-// FR: Styles en objet JavaScript | EN: JavaScript object styles | ES: Estilos en objeto JavaScript
+// Inline styles object / Objet de styles en ligne
 const styles = {
   formulaire: { padding: '20px', border: '2px solid #4CAF50', borderRadius: '10px' },
   champ: { display: 'block', margin: '10px 0', padding: '8px', width: '200px' },
