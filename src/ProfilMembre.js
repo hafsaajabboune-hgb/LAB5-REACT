@@ -1,28 +1,27 @@
-import { useContext } from 'react'; // FR: Hook pour utiliser le contexte | EN: Hook to use context
-import { ContexteMembre } from './ContexteMembre'; // FR: Import du contexte créé
+import { useContext } from 'react'; // Hook to use context / Hook pour utiliser le contexte
+import { ContexteMembre } from './ContexteMembre'; // Import created context / Import du contexte créé
 
 function ProfilMembre() {
-  // FR: Consommation du contexte global | EN: Consuming global context
-  // DE: Konsum des globalen Kontexts | ES: Consumo del contexto global
+  // Consume global context / Consommation du contexte global
   const { membre, setMembre } = useContext(ContexteMembre);
 
-  // FR: Fonction pour déconnecter l'utilisateur | EN: Function to logout user
+  // Logout function / Fonction de déconnexion
   const handleDeconnexion = () => {
-    setMembre({ nom: '', statut: 'visiteur' }); // FR: Réinitialisation de l'état global
+    setMembre({ nom: '', statut: 'visiteur' }); // Reset global state / Réinitialisation de l'état global
   };
 
-  // FR: Fonction pour connecter l'utilisateur | EN: Function to login user
+  // Login function / Fonction de connexion
   const handleConnexion = () => {
-    setMembre({ nom: 'Jean Participant', statut: 'premium' }); // FR: Mise à jour de l'état global
+    setMembre({ nom: 'Jean Participant', statut: 'premium' }); // Update global state / Mise à jour de l'état global
   };
 
   return (
     <div style={stylesProfil.conteneur}>
       <h3>Espace Membre</h3>
-      {/* FR: Rendu conditionnel basé sur l'état global | EN: Conditional rendering based on global state */}
+      {/* Conditional rendering based on global state / Rendu conditionnel basé sur l'état global */}
       {membre.statut !== 'visiteur' ? (
         <div style={stylesProfil.info}>
-          <p>Bienvenue {membre.nom} !</p> {/* AR: عرض اسم العضو */}
+          <p>Bienvenue {membre.nom} !</p>
           <p>Statut : <strong>{membre.statut}</strong></p>
           <button onClick={handleDeconnexion} style={stylesProfil.bouton}>
             Se deconnecter
@@ -40,6 +39,7 @@ function ProfilMembre() {
   );
 }
 
+// Profile component styles / Styles du composant profil
 const stylesProfil = {
   conteneur: { 
     padding: '20px', 
