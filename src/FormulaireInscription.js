@@ -1,7 +1,7 @@
-import { useState } from 'react'; // FR: Gestion d'état pour formulaire complexe
+import { useState } from 'react'; // State management for complex form / Gestion d'état pour formulaire complexe
 
 function FormulaireInscription() {
-  // FR: État pour les champs du formulaire | EN: State for form fields
+  // State for form fields / État pour les champs du formulaire
   const [utilisateur, setUtilisateur] = useState({
     pseudo: '',
     email: '',
@@ -9,22 +9,21 @@ function FormulaireInscription() {
     confirmMdp: ''
   });
 
-  // FR: État pour les messages d'erreur | EN: State for error messages
+  // State for error messages / État pour les messages d'erreur
   const [erreurs, setErreurs] = useState({});
 
-  // FR: Gestion des changements avec validation en direct,HAFSA FST SIR 
+  // Handle input changes / Gère les changements dans les champs
   const handleChangement = (e) => {
     const { name, value } = e.target;
     setUtilisateur(prev => ({ ...prev, [name]: value }));
-    // FR: On pourrait ajouter une validation en temps réel ici
   };
 
-  // FR: Validation avant soumission | EN: Validation before submission
+  // Validate and submit form / Valide et soumet le formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
     const nouvellesErreurs = {};
     
-    // FR: Règles de validation | EN: Validation rules
+    // Validation rules / Règles de validation
     if (!utilisateur.pseudo) nouvellesErreurs.pseudo = "Pseudo requis";
     if (!utilisateur.email.includes('@')) nouvellesErreurs.email = "Email invalide";
     if (utilisateur.motDePasse.length < 6) nouvellesErreurs.motDePasse = "6 caracteres minimum";
@@ -32,11 +31,11 @@ function FormulaireInscription() {
       nouvellesErreurs.confirmMdp = "Les mots de passe ne correspondent pas";
     }
 
-    // FR: Si pas d'erreurs, soumission réussie. HAFSA ST SIR 
+    // If no errors, submission successful / Si pas d'erreurs, soumission réussie
     if (Object.keys(nouvellesErreurs).length === 0) {
       alert(`Inscription reussie pour ${utilisateur.pseudo}!`);
     } else {
-      setErreurs(nouvellesErreurs); // FR: Affichage des erreurs. HAFSA FST SIR 
+      setErreurs(nouvellesErreurs); // Display errors / Affichage des erreurs
     }
   };
 
@@ -44,7 +43,7 @@ function FormulaireInscription() {
     <form onSubmit={handleSubmit}>
       <h3>Formulaire d'inscription</h3>
       
-      {/* FR: Champ avec affichage d'erreur conditionnel.......... */}
+      {/* Input with conditional error display / Champ avec affichage d'erreur conditionnel */}
       <input name="pseudo" placeholder="Pseudo" onChange={handleChangement} />
       {erreurs.pseudo && <span style={{color: 'red'}}>{erreurs.pseudo}</span>}
       
