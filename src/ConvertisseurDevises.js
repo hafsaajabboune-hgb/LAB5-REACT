@@ -1,38 +1,38 @@
-import { useState } from 'react'; // FR: Hook d'état | ES: Hook de estado
-import MontantInput from './MontantInput'; // FR: Import du composant enfant | EN: Import child component
+import { useState } from 'react'; // State hook / Hook d'état
+import MontantInput from './MontantInput'; // Child component import / Import du composant enfant
 
 function ConvertisseurDevises() {
-  // FR: L'état est remonté du composant enfant | EN: State is lifted up from child component
+  // State lifted up from child component / État remonté du composant enfant
   const [euros, setEuros] = useState('');
-  const TAUX_CONVERSION = 1.08; // FR: Taux de change fixe | DE: Fester Wechselkurs
+  const TAUX_CONVERSION = 1.08; // Fixed exchange rate / Taux de change fixe
 
-  // FR: Fonction de conversion (logique métier) | EN: Conversion function (business logic)
+  // Conversion function (business logic) / Fonction de conversion (logique métier)
   const convertirEnDollars = (valeurEuros) => {
-    if (valeurEuros === '') return ''; // FR: Gestion du cas vide | EN: Handle empty case
-    return (parseFloat(valeurEuros) * TAUX_CONVERSION).toFixed(2); // FR: Calcul et formatage
+    if (valeurEuros === '') return ''; // Handle empty input / Gestion du cas vide
+    return (parseFloat(valeurEuros) * TAUX_CONVERSION).toFixed(2); // Calculate and format / Calcul et formatage
   };
 
   return (
     <div style={stylesDevises.conteneur}>
       <h3>Convertisseur Euro Dollar</h3>
       
-      {/* FR: Communication parent-enfant via props | EN: Parent-child communication via props */}
+      {/* Parent-child communication via props / Communication parent-enfant via props */}
       <MontantInput
-        montant={euros} // FR: Transmission de la valeur vers l'enfant
-        surChangementMontant={setEuros} // FR: Transmission de la fonction de mise à jour
+        montant={euros} // Pass value to child / Transmission de la valeur vers l'enfant
+        surChangementMontant={setEuros} // Pass update function / Transmission de la fonction de mise à jour
         devise="EUR"
       />
       
-      {/* AR: عرض النتيجة المحسوبة | DE: Berechnetes Ergebnis anzeigen */}
+      {/* Conditional rendering of result / Affichage conditionnel du résultat */}
       <div style={stylesDevises.resultat}>
         <strong>Resultat :</strong>{' '}
         {euros ? `${convertirEnDollars(euros)} USD` : 'Entrez un montant'}
-        {/* FR: Affichage conditionnel | EN: Conditional rendering */}
       </div>
     </div>
   );
 }
 
+// Converter component styles / Styles du composant convertisseur
 const stylesDevises = {
   conteneur: { 
     padding: '20px', 
