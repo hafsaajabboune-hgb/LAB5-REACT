@@ -1,16 +1,15 @@
-// FR: Composant réutilisable pour saisie de montant | EN: Reusable amount input component
+// Reusable amount input component / Composant réutilisable pour saisie de montant
 function MontantInput({ montant, surChangementMontant, devise }) {
-  // DE: Wiederverwendbare Komponente für Betragseingabe | ES: Componente reutilizable para entrada de cantidad
   
   return (
     <div style={stylesMontant.conteneur}>
-      {/* AR: عنصر واجهة المستخدم مع التسمية | FR: Élément avec label | EN: Labeled input element */}
+      {/* Label with input / Label avec champ de saisie */}
       <label style={stylesMontant.label}>
         Montant en {devise} :
         <input
           type="number"
-          value={montant} // FR: Valeur contrôlée par le parent | EN: Value controlled by parent
-          onChange={(e) => surChangementMontant(e.target.value)} // FR: Propagation des changements au parent
+          value={montant} // Value controlled by parent / Valeur contrôlée par le parent
+          onChange={(e) => surChangementMontant(e.target.value)} // Propagate changes to parent / Propage les changements au parent
           style={stylesMontant.input}
         />
       </label>
@@ -18,7 +17,7 @@ function MontantInput({ montant, surChangementMontant, devise }) {
   );
 }
 
-// FR: Styles du composant MontantInput | EN: MontantInput component styles
+// Component styles / Styles du composant
 const stylesMontant = {
   conteneur: { margin: '10px 0' },
   label: { fontWeight: 'bold' },
