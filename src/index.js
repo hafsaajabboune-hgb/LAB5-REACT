@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-// FR: Point d'entrée de l'application | EN: Application entry point
+// Application entry point / Point d'entrée de l'application
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App /> {/* FR: Composant principal | EN: Main component */}
+    <App /> {/* Main component / Composant principal */}
   </React.StrictMode>
 );
